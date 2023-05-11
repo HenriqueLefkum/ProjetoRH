@@ -1,0 +1,50 @@
+/* Estilizando a container dos botões */
+.dropdown-container {
+    background-color: #4CAF50;
+}
+  
+  /* Estilizando os botões */
+  .dropdown {
+    display: inline-block;
+    position: relative; /* necessário para posicionar o menu de sobreposição */
+    margin-right: 10px; /* espaçamento entre os botões */
+  }
+  
+  /* Estilizando o texto dos botões */
+  .dropdown-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    min-width: 300px;
+  }
+  
+  /* Estilizando o menu de sobreposição */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 300px;
+    z-index: 1;
+  }
+  
+  /* Mostrando o menu de sobreposição quando o mouse passa sobre o botão */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Estilizando as opções no menu de sobreposição */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Estilizando as opções no menu de sobreposição quando o mouse passa sobre elas */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
