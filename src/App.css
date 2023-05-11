@@ -6,11 +6,3 @@ body
     margin: 0 auto; /* Isso centraliza a página na tela */
     height: 100%;
 }
-.content-box
-{
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    width: 90%;
-    height: 100%;
-    margin: 10px auto;
-}

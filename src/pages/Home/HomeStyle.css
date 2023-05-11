@@ -1,0 +1,10 @@
+.content-box
+{
+    background-color: rgb(215, 215, 215);
+    border-radius: 10px;
+    width: 90%;
+    min-height: 400px;
+    margin: 10px auto;
+    padding-top:5px;
+    padding: 0px 10px;
+}

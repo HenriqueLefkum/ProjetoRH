@@ -1,16 +1,11 @@
 import './App.css'; 
 import ButtonsNav from './components/ButtonsNav/ButtonsNav';
 import Header from './components/Header/Header'
+import RoutesApp from './config/RouterConfig/router'
 
 function App() {
   return (
-    <div>
-      <Header/>
-      <ButtonsNav/>
-      <div className='content-box'>
-        <h1>Teste</h1>
-      </div>
-    </div>
+      <RoutesApp/>
   );
 }
 
