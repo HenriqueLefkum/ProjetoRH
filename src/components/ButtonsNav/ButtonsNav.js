@@ -1,14 +1,15 @@
 import React from "react";
 import './ButtonsNavStyle.css'
+import { Link } from 'react-router-dom'
 
 function ButtonsNav()
 {
     return(
     <div class="dropdown-container">
         <div class="dropdown">
-            <button class="dropdown-btn">Menu 1</button>
+            <button class="dropdown-btn">Funcionarios</button>
             <div class="dropdown-content">
-            <a >Opção 1.1</a>
+            <Link to="lista-funcionarios">Funcionarios</Link>
             <a >Opção 1.2</a>
             <a >Opção 1.3</a>
             </div>
