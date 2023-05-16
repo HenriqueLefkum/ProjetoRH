@@ -1,10 +1,11 @@
 import './headerStyle.css'
+import { Link } from 'react-router-dom';
 function Header()
 {
     return(
      <div className='headerArea'>
         
-            <h1>Header</h1>
+        <Link to="/">Header</Link>
         
      </div>
     );

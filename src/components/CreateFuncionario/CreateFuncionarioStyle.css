@@ -13,7 +13,9 @@
   
   .modal-input-container {
     display: flex;
+    max-width: 500px;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-between;
   }
   

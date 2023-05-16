@@ -21,7 +21,7 @@
 table {
     border-collapse: collapse;
     width: 100%;
-    max-width: 800px; /* Define uma largura máxima para a tabela */
+    max-width: 80%; /* Define uma largura máxima para a tabela */
     margin: 0 auto; /* Centraliza a tabela na página */
     font-family: Arial, sans-serif;
     font-size: 14px;

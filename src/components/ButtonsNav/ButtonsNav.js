@@ -7,19 +7,19 @@ function ButtonsNav()
     return(
     <div class="dropdown-container">
         <div class="dropdown">
-            <button class="dropdown-btn">Funcionarios</button>
+            <button class="dropdown-btn">Gerenciamento</button>
             <div class="dropdown-content">
             <Link to="lista-funcionarios">Funcionarios</Link>
-            <a >Opção 1.2</a>
-            <a >Opção 1.3</a>
+            <Link to="lista-funcionarios">Usuarios</Link>
+            <Link to="lista-funcionarios">Estabelecimento</Link>
             </div>
         </div>
         <div class="dropdown">
-            <button class="dropdown-btn">Menu 2</button>
+            <button class="dropdown-btn">Estabelecimento</button>
             <div class="dropdown-content">
-            <a >Opção 2.1</a>
-            <a >Opção 2.2</a>
-            <a >Opção 2.3</a>
+            <a >Cadastrar</a>
+            <a >Gerenciar</a>
+            <a ></a>
             </div>
         </div>
         <div class="dropdown">
