@@ -59,3 +59,8 @@ background-color: #b3b3b3;
 tr:nth-child(even) td {
 background-color: #fff;
 }
+
+.modal-box
+{
+    width: 40%;
+}
