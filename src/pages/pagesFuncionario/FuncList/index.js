@@ -2,7 +2,7 @@
 //talvez mais pro futuro adicionar as opções do que mostrar e tambem para mandar pro excel ou imprimir em pdf {users.map((user) => (
 // <tr key={user.id}></tr>
 import React, { useEffect, useState } from 'react'
-import {addDocs, getDocs , collection } from  'firebase/firestore'
+import { getDocs , collection } from  'firebase/firestore'
 import CreateFuncionario from '../../../components/CreateFuncionario/CreateFuncionario';
 import ReactModal from 'react-modal';
 import { db } from '../../../config/firebaseConfig/firebaseConfig';

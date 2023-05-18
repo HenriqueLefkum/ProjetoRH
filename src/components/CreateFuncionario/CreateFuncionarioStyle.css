@@ -1,45 +1,9 @@
 .modal {
     width: 100%;
     max-width: 1000px;
-    margin: auto;
+    margin: 5px auto;
     padding: 20px;
-  }
-  
-  .modal-title {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .modal-input-container {
-    display: flex;
-    max-width: 500px;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .modal-input {
-    width: calc(50% - 5px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .modal-input:focus {
-    outline: none;
-    border-color: #3498db;
-    max-width: 1200px;
-  }
-  
-  @media (max-width: 600px) {
-    .modal {
-      max-width: 100%;
-    }
-  
-    .modal-input {
-      width: 100%;
-    }
+    flex-direction: row;
+    align-items: center;
   }
   

@@ -17,17 +17,17 @@ function ButtonsNav()
         <div class="dropdown">
             <button class="dropdown-btn">Estabelecimento</button>
             <div class="dropdown-content">
-            <a >Cadastrar</a>
-            <a >Gerenciar</a>
-            <a ></a>
+            <Link>Cadastrar</Link>
+            <Link>Gerenciar</Link>
+            <Link></Link>
             </div>
         </div>
         <div class="dropdown">
             <button class="dropdown-btn">Menu 3</button>
             <div class="dropdown-content">
-            <a >Opção 3.1</a>
-            <a >Opção 3.2</a>
-            <a >Opção 3.3</a>
+            <Link>Opção 3.1</Link>
+            <Link>Opção 3.2</Link>
+            <Link>Opção 3.3</Link>
             </div>
         </div>
     </div>
