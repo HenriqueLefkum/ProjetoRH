@@ -1,6 +1,6 @@
 import './CreateFuncionarioStyle.css'
 import { db } from '../../config/firebaseConfig/firebaseConfig';
-import { collection, doc, getDocs, setDoc } from 'firebase/firestore';  
+import { collection, doc , getDocs, setDoc, addDoc } from "firebase/firestore";
 import { React, useState, useEffect } from 'react';
 function CreateFuncionario({userID})
 {
@@ -26,17 +26,13 @@ function CreateFuncionario({userID})
   
 
   const[users,setUsers] = useState([]);
-
-  const userCollectionRef = collection(db,"funcionarios");
-
   const[usersLoaded,setUsersLoaded] = useState(false);
-  const[userExist,setUserExist] = useState(false);
   const[loading,setLoading] = useState(true);
 
   useEffect(() => {
     const getUsers = async () => {
       try{
-        const data = await getDocs(userCollectionRef);
+        const data = await getDocs(collection(db,"funcionarios"));
         setUsers(data.docs.map((doc) => ({...doc.data(), id : doc.id})));
         setUsersLoaded(true);
         console.log("Passou pelo banco");
@@ -80,19 +76,11 @@ function CreateFuncionario({userID})
       setEscolaridade(user.ESCOLARIDADE)
       setnEscolaridade(user.NESCOLARIDADE);
       setEEXP(user.EEXP);
-      console.log("Atualizou os dados", nome,CPF);
     }
   }
 
-  if(loading){
-    return <h1>Carregando Usuario</h1>
-  }
-
-
-  async function AddFuncionario()
-  {
-    const user = await setDoc(doc(db,'funcionarios',userID ),{
-      NOME: nome,
+  const dataFuncionario = {
+    NOME: nome,
       CPF : CPF,
       ENDERECO: Endereco,
       ENUM : eNum,
@@ -109,44 +97,101 @@ function CreateFuncionario({userID})
       NACIO: Nacio,
       ESCOLARIDADE: Escolaridade,
       NESCOLARIDADE: nEscolaridade,
-      EEXP: EEXP,
-    })
+      EEXP: EEXP
+  }
+
+  if(loading){
+    return <h1>Carregando Usuario</h1>
+  }
+   
+  function handleSaveUser(){
+    if (userID === null || userID === "" || typeof userID === "undefined")
+    {
+      addFuncionario();
+    }else{
+      saveFuncionario();
+    }
+  }
+  async function addFuncionario()
+  {
+    try{
+      setLoading(true);
+      const user = await addDoc(collection(db,"funcionarios"),dataFuncionario);
+      alert("Funcionario Criado com Sucesso");
+    }catch(error){
+      alert("Ouve um Erro ao criar o funcionario",error);
+      setLoading(false);
+    }finally{
+      setLoading(false);
+    }
+  }
+  async function saveFuncionario()
+  {
+    if (userID != null || userID != "" || typeof userID != "undefined"){
+      try{
+        setLoading(true);
+        const user = await setDoc(doc(db,"funcionarios",userID  ),dataFuncionario);
+        alert("Funcionario Atualizado com Sucesso");
+        alert(userID);
+        handleReload();
+      }catch(error){
+        setLoading(false);
+        alert("Ocorreu um Erro ao Atualizar o Funcionario");
+      }finally{
+      setLoading(false)
+      }
+    }
+  }
+  function handleReload()
+  {
+    window.location.reload();
   }
 
     
   return(
-    <div class="modal">
-    <h1>tomara que funcione</h1>
+<div class="modal">
+  <div class="header">
+    <div class="header-buttons">
+      <button class="save-button" onClick={handleSaveUser}>Salvar</button>
+      <button class="exit-button"onClick={handleReload}>Sair</button>
+    </div>
+  </div>
+  <div>
     <div>
-      <div>
-        <label>Informações Pessoais</label>
+      <div className='info-label'>
+        <label class="label">Informações Pessoais</label><br/>
         <input type="text" class="modal-input" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} />
         <input type="text" class="modal-input" placeholder="CPF" value={CPF} onChange={(e) => setCPF(e.target.value)} />
         <input type="date" class="modal-input" placeholder="Data Nascimento" value={DataNas} onChange={(e) => setDataNas(e.target.value)} />
-        <input type='text' placeholder='TELEFONE PARA CONTATO' value={tel} onChange={(e) => setTel(e.target.value)}></input>
-        <input type='text' placeholder='ESTADO CIVIL' value={eCivil} onChange={(e) =>setECivil(e.target.value)}></input>
-        <input type='text' placeholder='Nome Mãe' value={nMae} onChange={(e) => setnMae(e.target.value)}></input>
-        <input type='text' placeholder='Nome Pai' value={nPai} onChange={(e) => setnPai(e.target.value)}></input>
-        <input type='text' placeholder='Naturalidade' value={Nat} onChange={(e) => setNat(e.target.value)}></input>
-        <input type='text' placeholder='UF' value={ufNat} onChange={(e) => setUFNat(e.target.value)}></input>
-        <input type='text' placeholder='Nacionalidade' value={Nacio} onChange={(e) => setNacio(e.target.value)}></input>
-        <label>Logradouro</label>
+        <input type='text' class="modal-input" placeholder='TELEFONE PARA CONTATO' value={tel} onChange={(e) => setTel(e.target.value)}></input>
+        <input type='text' class="modal-input" placeholder='ESTADO CIVIL' value={eCivil} onChange={(e) =>setECivil(e.target.value)}></input>
+        <input type='text' class="modal-input" placeholder='Nome Mãe' value={nMae} onChange={(e) => setnMae(e.target.value)}></input>
+        <input type='text' class="modal-input" placeholder='Nome Pai' value={nPai} onChange={(e) => setnPai(e.target.value)}></input>
+        <input type='text' class="modal-input" placeholder='Naturalidade' value={Nat} onChange={(e) => setNat(e.target.value)}></input>
+        <input type='text' class="modal-input" placeholder='UF' value={ufNat} onChange={(e) => setUFNat(e.target.value)}></input>
+        <input type='text' class="modal-input" placeholder='Nacionalidade' value={Nacio} onChange={(e) => setNacio(e.target.value)}></input>
+      </div>
+      <div className='info-label'>
+        <label class="label">Logradouro</label><br/>
         <input type="text" class="modal-input" placeholder="Endereço" value={Endereco} onChange={(e) => setEndereco(e.target.value)} />
         <input type="text" class="modal-input" placeholder="Numero" value={eNum} onChange={(e) => seteNum(e.target.value)} />
         <input type="text" class="modal-input" placeholder="Cidade" value={Cidade} onChange={(e) => setCidade(e.target.value)} />
-        <input type='text' placeholder='CEP' value={CEP} onChange={(e) => setCEP(e.target.value)}></input>
-        <input type='text' placeholder='UF' value={UF} onChange={(e) => setUF(e.target.value)}></input>
-        <label>Escolaridade</label>
-        <input type='text' placeholder='Escolaridade' 
-        value={Escolaridade} onChange={(e) => setEscolaridade(e.target.value)}></input>
-        <input type='text' placeholder='n Escolaridade' value={nEscolaridade} onChange={(e) => setnEscolaridade(e.target.value)}></input>
-        <input type='text' placeholder='Data de Expedição' value={EEXP} onChange={(e) => setEEXP(e.target.value)}></input>
-        <label>Informações de Cargo</label>
-        <input type='text' placeholder='Salario Hora' ></input>
-        <button onClick={AddFuncionario}>Adicionar Funcionario</button>
+        <input type='text' class="modal-input" placeholder='CEP' value={CEP} onChange={(e) => setCEP(e.target.value)}></input>
+        <input type='text' class="modal-input" placeholder='UF' value={UF} onChange={(e) => setUF(e.target.value)}></input>
+        </div>
+        <div>
+        <label class="label">Escolaridade</label><br/>
+        <input type='text' class="modal-input" placeholder='Escolaridade' value={Escolaridade} onChange={(e) => setEscolaridade(e.target.value)}></input>
+        <input type='text' class="modal-input" placeholder='n Escolaridade' value={nEscolaridade} onChange={(e) => setnEscolaridade(e.target.value)}></input>
+        <input type='text' class="modal-input" placeholder='Data de Expedição' value={EEXP} onChange={(e) => setEEXP(e.target.value)}></input>
+      </div>
+      <div className='info-label'>
+        <label class="label">Informações de Cargo</label><br/>
+        <input type='text' class="modal-input" placeholder='Salario Hora'></input>
       </div>
     </div>
   </div>
+</div>
 
   );
 }

@@ -3,12 +3,13 @@ import {getFirestore} from 'firebase/firestore'
 
 //puxa o banco de dados
 const firebaseApp = initializeApp({
-    apiKey: "AIzaSyAARFLZoq6gM23JDf6tEtz4IR98MOOQrlQ",
-    authDomain: "siterh-897b0.firebaseapp.com",
-    projectId: "siterh-897b0",
-    storageBucket: "siterh-897b0.appspot.com",
-    messagingSenderId: "1012908564774",
-    appId: "1:1012908564774:web:af28af0bae9aa3f268a1e7"
+    apiKey: "AIzaSyCtmACpdp5WRYiRo81ZTUQeAslNc6R3pPk",
+    authDomain: "siterh-ad136.firebaseapp.com",
+    projectId: "siterh-ad136",
+    storageBucket: "siterh-ad136.appspot.com",
+    messagingSenderId: "319601638665",
+    appId: "1:319601638665:web:3cdeb0f0aedd58a179e7d8",
+    measurementId: "G-9590PMJBLR"
 });
 //inicia o banco de dados
 const db = getFirestore(firebaseApp);

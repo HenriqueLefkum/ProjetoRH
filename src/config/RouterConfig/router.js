@@ -3,7 +3,8 @@ import Header from "../../components/Header/Header";
 import ButtonsNav from "../../components/ButtonsNav/ButtonsNav";
 //Importação das Paginas Do App
 import Home from "../../pages/Home";
-import FuncList from '../../pages/pagesFuncionario/FuncList';
+import FuncList from '../../pages/FuncList';
+import UserList from "../../pages/UserList";
     function RoutesApp()
 {
     /*aqui vai as funções para mudar as paginas e adivionar os componentes
@@ -22,6 +23,7 @@ import FuncList from '../../pages/pagesFuncionario/FuncList';
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/lista-funcionarios" element={<FuncList/>}/>
+                <Route path="/lista-usuarios" element={<UserList/>}/>
             </Routes>
         </BrowserRouter>
     );
