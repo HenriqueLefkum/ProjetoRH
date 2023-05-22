@@ -10,7 +10,7 @@ function ButtonsNav()
             <button class="dropdown-btn">Gerenciamento</button>
             <div class="dropdown-content">
             <Link to="lista-funcionarios">Funcionarios</Link>
-            <Link to="lista-funcionarios">Usuarios</Link>
+            <Link to="lista-usuarios">Usuarios</Link>
             <Link to="lista-funcionarios">Estabelecimento</Link>
             </div>
         </div>

@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import ButtonsNav from "../../components/ButtonsNav/ButtonsNav";
 //Importação das Paginas Do App
 import Home from "../../pages/Home";
-import FuncList from '../../pages/pagesFuncionario/FuncList'
+import FuncList from '../../pages/pagesFuncionario/FuncList';
     function RoutesApp()
 {
     /*aqui vai as funções para mudar as paginas e adivionar os componentes

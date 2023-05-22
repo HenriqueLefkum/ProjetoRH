@@ -66,13 +66,13 @@ function FuncList()
             <tbody>
                 {users.map((user) => (
                 <tr key={user}>
-                    <td><button onClick={() => handleUserButtonClick(user.id)}>{user.nome}</button></td>
+                    <td><button onClick={() => handleUserButtonClick(user.id)}>{user.NOME}</button></td>
                     <td><button onClick={() => handleUserButtonClick(user.id)}>{user.CPF}</button></td>
-                    <td><button onClick={() => handleUserButtonClick(user.id)}>{user.Endereco}</button></td>
-                    <td><button onClick={() => handleUserButtonClick(user.id)}>{user.nEnum}</button></td>
+                    <td><button onClick={() => handleUserButtonClick(user.id)}>{user.ENDERECO}</button></td>
+                    <td><button onClick={() => handleUserButtonClick(user.id)}>{user.ENUM}</button></td>
                     <td><button onClick={() => handleUserButtonClick(user.id)}>{user.PIS}</button></td>
-                    <td><button onClick={() => handleUserButtonClick(user.id)}>{user.Funcao}</button></td>
-                    <td><button onClick={() => handleUserButtonClick(user.id)}>{user.SalarioHora}</button></td>
+                    <td><button onClick={() => handleUserButtonClick(user.id)}>{user.FUNCAO}</button></td>
+                    <td><button onClick={() => handleUserButtonClick(user.id)}>{user.SALARIOHORA}</button></td>
                 </tr>
                 ))}
             </tbody>
