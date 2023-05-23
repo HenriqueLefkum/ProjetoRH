@@ -6,7 +6,7 @@ import CreateFuncionario from '../../components/CreateFuncionario/CreateFunciona
 import ReactModal from 'react-modal';
 import { db } from '../../config/firebaseConfig/firebaseConfig';
 import deleteButtonImage from '../../images/button/button-delete.png';
-import editButtonImage from '../../images/button/button-edit.png'
+import editButtonImage from '../../images/button/button-edit.png';
 
 import '../../App.css'
 function FuncList()

@@ -2,7 +2,7 @@ import { db } from "../../config/firebaseConfig/firebaseConfig";
 import React from "react";
 import { collection, doc, getDocs, setDoc } from 'firebase/firestore'; 
 import { useEffect, useState } from "react";
-import './CreateUsuarioStyle.css'
+import "../../App.css"
 
 function CreateUsuario({userID}){
     //todas as informações do usuario para ele poder logar no sistema

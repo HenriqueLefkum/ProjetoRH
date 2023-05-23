@@ -11,7 +11,7 @@ function ButtonsNav()
             <div class="dropdown-content">
             <Link to="lista-funcionarios">Funcionarios</Link>
             <Link to="lista-usuarios">Usuarios</Link>
-            <Link to="lista-funcionarios">Estabelecimento</Link>
+            <Link to="lista-estabelecimento">Estabelecimento</Link>
             </div>
         </div>
         <div class="dropdown">

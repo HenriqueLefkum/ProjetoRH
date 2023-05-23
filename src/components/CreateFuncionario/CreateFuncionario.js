@@ -1,4 +1,4 @@
-import './CreateFuncionarioStyle.css'
+import '../../App.css'
 import { db } from '../../config/firebaseConfig/firebaseConfig';
 import { collection, doc , getDocs, setDoc, addDoc } from "firebase/firestore";
 import { React, useState, useEffect } from 'react';
