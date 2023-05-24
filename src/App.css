@@ -151,3 +151,23 @@ background-color: #fff;
   background-color: #f44336;
   color: #fff;
 }
+
+.tela {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mostrar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.botao-selecionado {
+  background-color: #ccc;
+}
