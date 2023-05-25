@@ -96,6 +96,8 @@ background-color: #fff;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  min-width: 800px;
+  min-height: 400px;
 }
 
 .header {

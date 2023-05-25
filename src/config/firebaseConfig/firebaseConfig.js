@@ -1,6 +1,5 @@
 import {initializeApp} from 'firebase/app'
 import {getFirestore} from 'firebase/firestore'
-import {getStorage} from 'firebase/storage'
 
 //puxa o banco de dados
 const firebaseApp = initializeApp({
@@ -14,6 +13,5 @@ const firebaseApp = initializeApp({
 });
 //inicia o banco de dados
 const db = getFirestore(firebaseApp);
-const storage = getStorage(firebaseApp);
 
-export {db, storage};
+export {db};
