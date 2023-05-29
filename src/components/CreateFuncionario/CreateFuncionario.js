@@ -23,6 +23,9 @@ function CreateFuncionario({userID})
   const[Escolaridade,setEscolaridade] = useState("");
   const[nEscolaridade,setnEscolaridade] = useState("");
   const[EEXP,setEEXP] = useState("");
+  const[funcao,setFuncao] = useState("");
+  const[estabTrab,setEstabTrab] = useState("");
+  const[nomeEstabelecimento,setNomeEstabalecimento] = useState("");
   
 
   const[users,setUsers] = useState([]);
@@ -32,8 +35,10 @@ function CreateFuncionario({userID})
   useEffect(() => {
     const getUsers = async () => {
       try{
-        const data = await getDocs(collection(db,"funcionarios"));
-        setUsers(data.docs.map((doc) => ({...doc.data(), id : doc.id})));
+        const dataFuncionario = await getDocs(collection(db,"funcionarios"));
+        const dataEstabelecimento = await getDocs(collection(db,"Estabelecimentos"));
+        setUsers(dataFuncionario.docs.map((doc) => ({...doc.data(), id : doc.id})));
+        setNomeEstabalecimento(dataEstabelecimento.docs.map((doc) => ({...doc.data(), id:doc.id})));
         setUsersLoaded(true);
         console.log("Passou pelo banco");
       }catch(error){
@@ -75,7 +80,10 @@ function CreateFuncionario({userID})
       setNacio(user.NACIO);
       setEscolaridade(user.ESCOLARIDADE)
       setnEscolaridade(user.NESCOLARIDADE);
+      setFuncao(user.FUNCAO)
       setEEXP(user.EEXP);
+      setFuncao(user.FUNCAO);
+      setEstabTrab(user.VINCULADO);
     }
   }
 
@@ -97,7 +105,9 @@ function CreateFuncionario({userID})
       NACIO: Nacio,
       ESCOLARIDADE: Escolaridade,
       NESCOLARIDADE: nEscolaridade,
-      EEXP: EEXP
+      EEXP: EEXP,
+      FUNCAO : funcao,
+      VINCULADO: estabTrab
   }
 
   if(loading){
@@ -132,7 +142,7 @@ function CreateFuncionario({userID})
         setLoading(true);
         const user = await setDoc(doc(db,"funcionarios",userID  ),dataFuncionario);
         alert("Funcionario Atualizado com Sucesso");
-        alert(userID);
+        alert(estabTrab);
         handleReload();
       }catch(error){
         setLoading(false);
@@ -188,6 +198,16 @@ function CreateFuncionario({userID})
       <div className='info-label'>
         <label class="label">Informações de Cargo</label><br/>
         <input type='text' class="modal-input" placeholder='Salario Hora'></input>
+        <input type ='text' class="modal-input" placeholder='Função' value={funcao} onChange={(e) => setFuncao(e.target.value)}></input>
+        
+          <select  className='modal-input' onChange={(e) => setEstabTrab(e.target.value)} value={estabTrab}>
+            <option value='Nenhum'>Nenhum</option>
+          {nomeEstabelecimento.map((estab) => (
+            <option key={estab}value={estab.NOME} >{estab.NOME} </option>
+          ))}
+          </select>
+        
+        
       </div>
     </div>
   </div>

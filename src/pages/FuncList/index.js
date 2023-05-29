@@ -73,7 +73,7 @@ function FuncList()
                     <th>CPF</th>
                     <th>Endereco</th>
                     <th>Numero</th>
-                    <th>PIS</th>
+                    <th>Estabelecimento</th>
                     <th>Função</th>
                     <th>Salario/h</th>
                 </tr>
@@ -89,7 +89,7 @@ function FuncList()
                     <td>{user.CPF}</td>
                     <td>{user.ENDERECO}</td>
                     <td>{user.ENUM}</td>
-                    <td>{user.ENDERECO}</td>
+                    <td>{user.VINCULADO}</td>
                     <td>{user.FUNCAO}</td>
                     <td>{user.SALARIOHORA}</td>
                 </tr>
