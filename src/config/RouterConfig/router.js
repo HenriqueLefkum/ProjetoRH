@@ -6,6 +6,7 @@ import Home from "../../pages/Home";
 import FuncList from '../../pages/FuncList';
 import UserList from "../../pages/UserList";
 import EstabList from "../../pages/EstabList";
+import GerirEstab from "../../pages/GerirEstab";
     function RoutesApp()
 {
     /*aqui vai as funções para mudar as paginas e adivionar os componentes
@@ -26,6 +27,7 @@ import EstabList from "../../pages/EstabList";
                 <Route path="/lista-funcionarios" element={<FuncList/>}/>
                 <Route path="/lista-usuarios" element={<UserList/>}/>
                 <Route path="/lista-estabelecimento" element={<EstabList/>}/>
+                <Route path="/gerir-estabelecimento" element={<GerirEstab/>}/>
             </Routes>
         </BrowserRouter>
     );

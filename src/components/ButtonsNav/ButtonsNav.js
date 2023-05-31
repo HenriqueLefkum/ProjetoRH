@@ -1,6 +1,7 @@
 import React from "react";
 import './ButtonsNavStyle.css'
 import { Link } from 'react-router-dom'
+import GerirEstab from "../../pages/GerirEstab";
 
 function ButtonsNav()
 {
@@ -17,17 +18,17 @@ function ButtonsNav()
         <div class="dropdown">
             <button class="dropdown-btn">Estabelecimento</button>
             <div class="dropdown-content">
-            <Link>Cadastrar</Link>
-            <Link>Gerenciar</Link>
+            <Link to={"lista-estabelecimento"}>Cadastrar</Link>
+            <Link to={"gerir-estabelecimento"}>Gerenciar</Link>
             <Link></Link>
             </div>
         </div>
         <div class="dropdown">
             <button class="dropdown-btn">Menu 3</button>
             <div class="dropdown-content">
-            <Link>Opção 3.1</Link>
-            <Link>Opção 3.2</Link>
-            <Link>Opção 3.3</Link>
+            <Link>Meu Perfil</Link>
+            <Link>Trocar Senhar</Link>
+            <Link>Sair</Link>
             </div>
         </div>
     </div>

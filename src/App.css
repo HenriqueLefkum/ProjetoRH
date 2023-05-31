@@ -46,7 +46,7 @@ table {
     max-width: 80%; /* Define uma largura máxima para a tabela */
     margin: 0 auto; /* Centraliza a tabela na página */
     font-family: Arial, sans-serif;
-    font-size: 14px;
+    font-size: 10px;
     border: 1px solid #000000; /* Adiciona uma borda para a tabela */
 }
 
@@ -118,6 +118,15 @@ background-color: #fff;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.modal-input2 {
+  /* Estilos para as entradas do modal */
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 50px;
 }
 
 .label {

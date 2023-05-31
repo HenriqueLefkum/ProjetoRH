@@ -24,6 +24,7 @@ function CreateFuncionario({userID})
   const[nEscolaridade,setnEscolaridade] = useState("");
   const[EEXP,setEEXP] = useState("");
   const[funcao,setFuncao] = useState("");
+  const[salHora, setSalHora] = useState("");
   const[estabTrab,setEstabTrab] = useState("");
   const[nomeEstabelecimento,setNomeEstabalecimento] = useState("");
   
@@ -82,8 +83,8 @@ function CreateFuncionario({userID})
       setnEscolaridade(user.NESCOLARIDADE);
       setFuncao(user.FUNCAO)
       setEEXP(user.EEXP);
-      setFuncao(user.FUNCAO);
       setEstabTrab(user.VINCULADO);
+      setSalHora(user.SALHORA);
     }
   }
 
@@ -106,8 +107,9 @@ function CreateFuncionario({userID})
       ESCOLARIDADE: Escolaridade,
       NESCOLARIDADE: nEscolaridade,
       EEXP: EEXP,
-      FUNCAO : funcao,
-      VINCULADO: estabTrab
+      VINCULADO : estabTrab,
+      SALHORA: salHora,
+      SALEXTRA : salHora * 1.5,
   }
 
   if(loading){
@@ -140,13 +142,13 @@ function CreateFuncionario({userID})
     if (userID != null || userID != "" || typeof userID != "undefined"){
       try{
         setLoading(true);
-        const user = await setDoc(doc(db,"funcionarios",userID  ),dataFuncionario);
+        const user = await setDoc(doc(db,"funcionarios",userID),dataFuncionario);
         alert("Funcionario Atualizado com Sucesso");
         alert(estabTrab);
         handleReload();
       }catch(error){
         setLoading(false);
-        alert("Ocorreu um Erro ao Atualizar o Funcionario");
+        alert("Ocorreu um Erro ao Atualizar o Funcionario"+ error);
       }finally{
       setLoading(false)
       }
@@ -197,7 +199,7 @@ function CreateFuncionario({userID})
       </div>
       <div className='info-label'>
         <label class="label">Informações de Cargo</label><br/>
-        <input type='text' class="modal-input" placeholder='Salario Hora'></input>
+        <input type='text' class="modal-input" placeholder='Salario Hora' value={salHora} onChange={(e) => setSalHora(e.target.value)}></input>
         <input type ='text' class="modal-input" placeholder='Função' value={funcao} onChange={(e) => setFuncao(e.target.value)}></input>
         
           <select  className='modal-input' onChange={(e) => setEstabTrab(e.target.value)} value={estabTrab}>
