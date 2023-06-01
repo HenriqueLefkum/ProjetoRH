@@ -20,13 +20,11 @@ function ButtonsNav()
             <div class="dropdown-content">
             <Link to={"lista-estabelecimento"}>Cadastrar</Link>
             <Link to={"gerir-estabelecimento"}>Gerenciar</Link>
-            <Link></Link>
             </div>
         </div>
         <div class="dropdown">
             <button class="dropdown-btn">Menu 3</button>
             <div class="dropdown-content">
-            <Link>Meu Perfil</Link>
             <Link>Trocar Senhar</Link>
             <Link>Sair</Link>
             </div>

@@ -1,36 +1,42 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, useLocation} from "react-router-dom";
 import Header from "../../components/Header/Header";
 import ButtonsNav from "../../components/ButtonsNav/ButtonsNav";
-//Importação das Paginas Do App
 import Home from "../../pages/Home";
 import FuncList from '../../pages/FuncList';
 import UserList from "../../pages/UserList";
 import EstabList from "../../pages/EstabList";
 import GerirEstab from "../../pages/GerirEstab";
-    function RoutesApp()
-{
-    /*aqui vai as funções para mudar as paginas e adivionar os componentes
-    para adicionar uma pagina aperna coloque <Route path to='link que sera a URL' component='O componente da pagina'/>
-    O componente Header e Buttons se inicializado antes de todo o return da pagina assim ficara como padrão
-    Caso tu queira Redirecionar qualquer lugar pra qualquer lugar 
-    Importe Link do react-router-dom e coloque <Link/ to='Nome da Pagina que está aqui'
-    olhe a pagina ButtonsNav la tem exemplos>
-    */
+import Login from "../../pages/Login";
 
-    
-    return(
-        <BrowserRouter>
-            <Header/>
-            <ButtonsNav/>
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/lista-funcionarios" element={<FuncList/>}/>
-                <Route path="/lista-usuarios" element={<UserList/>}/>
-                <Route path="/lista-estabelecimento" element={<EstabList/>}/>
-                <Route path="/gerir-estabelecimento" element={<GerirEstab/>}/>
-            </Routes>
-        </BrowserRouter>
-    );
+function AppRoutes() {
+  // Obter a localização atual
+  const location = useLocation();
+
+  // Verificar se a localização atual corresponde à rota de login
+  const isLoginPage = location.pathname === '/login';
+
+  return (
+    <>
+      {!isLoginPage && <Header />}
+      {!isLoginPage && <ButtonsNav />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/lista-funcionarios" element={<FuncList />} />
+        <Route path="/lista-usuarios" element={<UserList />} />
+        <Route path="/lista-estabelecimento" element={<EstabList />} />
+        <Route path="/gerir-estabelecimento" element={<GerirEstab />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </>
+  );
+}
+
+function RoutesApp() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
 }
 
 export default RoutesApp;
