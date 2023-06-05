@@ -2,7 +2,8 @@ import { collection, doc, setDoc, addDoc, getDocs, getDoc } from "firebase/fires
 import { db} from "../../config/firebaseConfig/firebaseConfig";
 import React, {useState, useEffect} from "react";
 import "../../App.css"
-function CreateEstabelecimento({userID})
+import axios from "axios";
+function CreateEstabelecimento({userID , handleCloseModal})
 {
     //informações sobre o estabelecimento
     const[nome,setNome] = useState("");
@@ -16,8 +17,7 @@ function CreateEstabelecimento({userID})
     const[loading,setLoading] = useState(true);
     const[estabelecimentosLoaded,setEstabelecimentosLoaded] = useState(false);
     const[estabelecimentos,setEstabelecimentos] = useState([]);
-    //as informações do estabelecimento como objetos, seram passados para adicionar os dados
-    
+    //as informações do estabelecimento como objetos, seram passados para adicionar os dados    
     const dateEstabelecimento = {
         NOME: nome,
         NOME_FANTASIA: nomeF,
@@ -27,14 +27,28 @@ function CreateEstabelecimento({userID})
         CEP: CEP,
         UF:UF
     }
+    //informaçoes para a API de CEP
+    const [address, setAddress] = useState([]);
 
+    const handleCepSubmit = async () => {
+        try {
+          const response = await axios.get(`https://viacep.com.br/ws/${CEP}/json/`);
+          setAddress(response.data);
+          setEndereco(address.logradouro);
+          setCidade(address.localidade);
+          setUF(address.uf);
+        } catch (error) {
+          console.log(error);
+          setAddress(null);
+        }
+      };
     if(loading)
     {
         <h1>Carregando</h1>
     }
     function handleReload()
     {
-        window.location.reload();
+        handleCloseModal();
     }
     //função para buscar os usuarios
     useEffect(() => {
@@ -75,7 +89,15 @@ function CreateEstabelecimento({userID})
             setUF(user.UF);
         }
     }
-
+    function preencherCampos()
+    {
+        if(nome === ("") && nomeF === ("") && Endereco === ("") && eNum === ("") && Cidade === ("") && CEP === ("") && UF === (""))
+        {
+            alert("Preencha todos os campos");
+        }else{
+            handleEstabelecimentoButtonClick();
+        }
+    }
     function handleEstabelecimentoButtonClick()
     {
         if(userID === null || userID === "" || typeof userID === "undefined" || (typeof userID === "object" && Object.keys(userID).length === 0)) {
@@ -117,7 +139,7 @@ function CreateEstabelecimento({userID})
         <div class="modal">
             <div class="header">
                 <div class="header-buttons">
-                    <button class="save-button" onClick={handleEstabelecimentoButtonClick}>Salvar</button>
+                    <button class="save-button" onClick={preencherCampos}>Salvar</button>
                     <button class="exit-button"onClick={handleReload}>Sair</button>
                 </div>
             </div>
@@ -128,11 +150,12 @@ function CreateEstabelecimento({userID})
                         <input type="text" class="modal-input" placeholder="Nome do Estabelecimento" value={nome} onChange={(e) => setNome(e.target.value)} />
                         <input type="text" class="modal-input" placeholder="Nome Fantasia" value={nomeF} onChange={(e) => setNomeF(e.target.value)} />
                         <br/><label className="label">Logradouro</label><br/>
-                        <input type="text" className="modal-input" placeholder="Endereço" value={Endereco} onChange={(e) => setEndereco(e.target.value)} />
+                        <input type="text" className="modal-input" placeholder="Endereço" value={Endereco} onChange={(e) => setEndereco(e.target.value)} disabled='true' />
                         <input type="text" className="modal-input" placeholder="Numero" value={eNum} onChange={(e) => seteNum(e.target.value)} />
-                        <input type="text" className="modal-input" placeholder="Cidade" value={Cidade} onChange={(e) => setCidade(e.target.value)} />
+                        <input type="text" className="modal-input" placeholder="Cidade" value={Cidade} onChange={(e) => setCidade(e.target.value)} disabled="true" />
                         <input type='text' className="modal-input" placeholder='CEP' value={CEP} onChange={(e) => setCEP(e.target.value)}></input>
-                        <input type='text' className="modal-input" placeholder='UF' value={UF} onChange={(e) => setUF(e.target.value)}></input>
+                        <input type='text' className="modal-input" placeholder='UF' value={UF} onChange={(e) => setUF(e.target.value)} disabled="true"></input>
+                        <button className="button-pequeno" onClick={handleCepSubmit}>Rastrear</button>
                     </div>
             </div>
         </div>

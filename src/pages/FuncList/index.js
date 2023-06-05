@@ -41,7 +41,7 @@ function FuncList()
     }
     const[ModalIsOpen, setModalIsOpen] = useState(false);
     const[selectedID,setSelectedID] = useState('');
-    const handleOpenModal = () =>
+    function handleOpenModal()
     {
         setModalIsOpen(true);
     }
@@ -60,11 +60,11 @@ function FuncList()
         <div className='content-box'>
             <div className='button-box'>
                 <button onClick={handleOpenModal}>Add</button>
-                <ReactModal isOpen={ModalIsOpen} onRequestClose={handleCloseModal} className="custom-modal" style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.9)' } }}>
-                <CreateFuncionario userID={selectedID}  />
-                </ReactModal>
             </div>
         <div className='table-container'>
+                <ReactModal isOpen={ModalIsOpen} onRequestClose={handleCloseModal} className="custom-modal" style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.9)' } }} >
+                <CreateFuncionario funcID={selectedID} handleCloseModal={handleCloseModal}  />
+                </ReactModal>
             <table>
             <thead>
                 <tr>

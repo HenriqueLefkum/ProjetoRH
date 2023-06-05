@@ -1,9 +1,9 @@
 import "../../App.css";
 import { db } from "../../config/firebaseConfig/firebaseConfig";
-import { getDocs, addDoc, doc, collection } from "firebase/firestore";
+import { getDocs, addDoc, collection } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 
-function FuncPayment({ funcID, estabID, anoSelecionado, mesSelecionado }) {
+function FuncPayment({ funcID, estabID, anoSelecionado, mesSelecionado, handleCloseModal }) {
   const [nomeFuncionario, setNomeFuncionario] = useState("");
   const [diasTrabalhados, setDiasTrabalhados] = useState("");
   const [salHora, setSalHora] = useState("");
@@ -94,7 +94,7 @@ function FuncPayment({ funcID, estabID, anoSelecionado, mesSelecionado }) {
   
   function handleReload()
   {
-    window.location.reload();
+    handleCloseModal();
   }
   if(loading){
     return(
@@ -112,24 +112,29 @@ function FuncPayment({ funcID, estabID, anoSelecionado, mesSelecionado }) {
             <button class="exit-button"onClick={handleReload}>Sair</button>
           </div>
       </div>
+      <p>Nome</p>
       <input
         type="text"
         value={nomeFuncionario}
         placeholder="Nome Completo"
         readOnly
       />
+      <p>Dias Trabalhados</p>
       <input
         type="text"
         value={diasTrabalhados}
         placeholder="Dias Trabalhados"
         onChange={(e) => setDiasTrabalhados(e.target.value)}
       />
+      <p>Salário Hora</p>
       <input type="text" value={salHora} readOnly />
+      <p>Dias Extras</p>
       <input
         type="text"
         value={diasExtraTrabalhado} placeholder="Dias Extra Trabalhados"
         onChange={(e) => setDiasExtraTrabalhado(e.target.value)}
       />
+      <p>Valor Hora Extra</p>
       <input type="text" value={salExtra} readOnly />
     </div>
   );

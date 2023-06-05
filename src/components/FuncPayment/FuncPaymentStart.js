@@ -5,7 +5,7 @@ import FuncPayment from "./FuncPayment";
 import { getDocs, collection, doc } from "firebase/firestore";
 import { db } from "../../config/firebaseConfig/firebaseConfig";
 
-function FuncPaymentStart({estabID})
+function FuncPaymentStart({estabID, handleCloseModal})
 {
     //variaveis uteis para o funcionamento do código
     const[mes,setMes] = useState("");
@@ -52,9 +52,14 @@ function FuncPaymentStart({estabID})
             alert("Preencha os Espaço de Mes e ano corretamente")
         }
     }
-    const handleCloseModal = () => {
+    const handleCloseModal2 = () => {
         setModalIsOpen(false);
         setSelectedID('');
+    }
+
+    function handleReload()
+    {
+        handleCloseModal();
     }
     return(
         <div className="modal">
@@ -81,7 +86,7 @@ function FuncPaymentStart({estabID})
                         <option>2024</option>
                         <option>2025</option>
                     </select>
-                    <button className="exit-button">Sair</button>
+                    <button className="exit-button"onClick={handleReload}>Sair</button>
                 </div>
             </div>
             <div>
@@ -111,9 +116,9 @@ function FuncPaymentStart({estabID})
                 ))}
             </tbody>
             </table>
-                    <ReactModal isOpen={ModalIsOpen} onRequestClose={handleCloseModal} className="custom-modal" style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.9)' } }}>
+                    <ReactModal isOpen={ModalIsOpen} onRequestClose={handleCloseModal2} className="custom-modal" style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.9)' } }}>
                             <FuncPayment estabID={estabID} mesSelecionado={mes} anoSelecionado={ano}
-                            funcID={idSelecionado}/>
+                            funcID={idSelecionado} handleCloseModal={handleCloseModal2}/>
                             </ReactModal>
                 </div>
             </div>

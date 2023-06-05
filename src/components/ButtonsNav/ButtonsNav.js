@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import './ButtonsNavStyle.css'
 import { Link } from 'react-router-dom'
-import GerirEstab from "../../pages/GerirEstab";
+import ChangePassword from "../ChangePassword/ChangePassword";
+import ReactModal from "react-modal";
 
 function ButtonsNav()
 {
+    const [ModalIsOpen,setModalIsOpen] = useState(false);
+    const handleOpenModal = () =>
+      {
+          setModalIsOpen(true);
+      }
+      const handleCloseModal = () => {
+          setModalIsOpen(false);
+      }
     return(
     <div class="dropdown-container">
         <div class="dropdown">
@@ -23,10 +32,13 @@ function ButtonsNav()
             </div>
         </div>
         <div class="dropdown">
-            <button class="dropdown-btn">Menu 3</button>
+            <button class="dropdown-btn">Perfil</button>
             <div class="dropdown-content">
-            <Link>Trocar Senhar</Link>
-            <Link>Sair</Link>
+            <button onClick={handleOpenModal}>Trocar Senha</button>
+            <ReactModal isOpen={ModalIsOpen} onRequestClose={handleCloseModal}className="custom-modal" style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.9)' } }}>
+            <ChangePassword/>
+            </ReactModal>
+            <Link to={"login"}>Sair</Link>
             </div>
         </div>
     </div>

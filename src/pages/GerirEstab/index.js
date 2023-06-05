@@ -59,9 +59,7 @@ function GerirEstab()
                 <tr key={user}>
                     <td>
                         <button class="edit-button" onClick={() => handleUserButtonClick(user.NOME)}>Pagamento</button>
-                        <ReactModal isOpen={ModalIsOpen} onRequestClose={handleCloseModal} className="custom-modal" style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.9)' } }}>
-                        <FuncPaymentStart estabID={selectedID}/>
-                        </ReactModal>
+                        
                     </td>
                     <td>{user.NOME}</td>
                     <td>{user.NOME_FANTASIA}</td>
@@ -74,6 +72,9 @@ function GerirEstab()
             </tbody>
             </table>
         </div>
+                        <ReactModal isOpen={ModalIsOpen} onRequestClose={handleCloseModal} className="custom-modal" style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.9)' } }}>
+                        <FuncPaymentStart estabID={selectedID} handleCloseModal={handleCloseModal}/>
+                        </ReactModal>
         </div>
     );
 }

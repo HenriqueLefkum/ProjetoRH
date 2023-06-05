@@ -4,8 +4,8 @@ import ReactModal from "react-modal";
 import deleteButtonImage from '../../images/button/button-delete.png';
 import editButtonImage from '../../images/button/button-edit.png'
 import { useEffect, useState } from "react";
-import "./EstabList.css";
 import CreateEstabelecimento from "../../components/CreateEstabelecimento/CreateEstabelecimento";
+import "../../App.css"
 
 function EstabList()
 {
@@ -31,7 +31,6 @@ function EstabList()
         try{
             await deleteDoc(doc(db,"Estabelecimentos",userID));
             alert("Funcionario Deletado com Sucesso");
-            window.location.reload();
         }catch(error){
             alert("Ouve um erro ao deletar o Funcionario",error)
         }
@@ -59,7 +58,7 @@ function EstabList()
         <div className='button-box'>
             <button onClick={handleOpenModal}>Add</button>
             <ReactModal isOpen={ModalIsOpen} onRequestClose={handleCloseModal} className="custom-modal" style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.9)' } }}>
-            <CreateEstabelecimento userID={selectedID}  />
+            <CreateEstabelecimento userID={selectedID}  handleCloseModal={handleCloseModal}/>
             </ReactModal>
         </div>
     <div className='table-container'>

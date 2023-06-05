@@ -2,7 +2,8 @@ import '../../App.css'
 import { db } from '../../config/firebaseConfig/firebaseConfig';
 import { collection, doc , getDocs, setDoc, addDoc } from "firebase/firestore";
 import { React, useState, useEffect } from 'react';
-function CreateFuncionario({userID})
+import axios from 'axios';
+function CreateFuncionario({funcID, handleCloseModal})
 {
   //isso é tudo que sera usado como informação do funcionario mas não é necessario preencher tudo
   const[nome,setNome] = useState("");
@@ -54,14 +55,14 @@ function CreateFuncionario({userID})
   }, []);
 
   useEffect(() => {
-    if (userID !== null && usersLoaded) {
+    if (funcID !== null && usersLoaded) {
       console.log("Entrou no getinfo");
       getInfo();
     }
-  }, [userID, usersLoaded]);
+  }, [funcID, usersLoaded]);
     
   function getInfo() {
-    const user = users.find(user => user.id === userID);
+    const user = users.find(user => user.id === funcID);
     console.log("entrou na vereficação");
     if (user){
       setNome(user.NOME);
@@ -87,6 +88,21 @@ function CreateFuncionario({userID})
       setSalHora(user.SALHORA);
     }
   }
+
+  const [address, setAddress] = useState([]);
+
+  const handleCepSubmit = async () => {
+      try {
+        const response = await axios.get(`https://viacep.com.br/ws/${CEP}/json/`);
+        setAddress(response.data);
+        setEndereco(address.logradouro);
+        setCidade(address.localidade);
+        setUF(address.uf);
+      } catch (error) {
+        console.log(error);
+        setAddress(null);
+      }
+    };
 
   const dataFuncionario = {
     NOME: nome,
@@ -115,34 +131,81 @@ function CreateFuncionario({userID})
   if(loading){
     return <h1>Carregando Usuario</h1>
   }
-   
+  function preencherCampos()
+  {
+    if(nome === ("") || CPF === ("") || CEP  === ("") || salHora  === ("") || funcao  === ("") || tel === ("") || EEXP  === ("")){
+      alert("preencha todos os campos em * : Nome, CPF , CEP , Salario/h , Funçao, Telefone e data de expedição")
+    }else{
+      handleSaveUser();
+    }
+  }
   function handleSaveUser(){
-    if (userID === null || userID === "" || typeof userID === "undefined")
+    if(funcID === null || funcID === "" || typeof funcID === "undefined")
     {
       addFuncionario();
     }else{
       saveFuncionario();
     }
   }
+  
+  
+  async function verifyCPF(cpf)
+  {
+    if(CPF.length >= 11 || CPF.length < 10)
+    {
+      return("CPF Invalido");
+    }
+      var i = 0;
+      var soma;
+      var resto;
+      soma = 0;
+      if(cpf === '00000000000')
+      {
+          alert("CPF invalido");
+          return false;
+      }
+      for(i=1; i<=9;i++) soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i);
+
+      resto = (soma * 10) % 11;
+
+      if((resto == 10) || (resto == 11))
+      {
+          resto = 0
+      }
+      if(resto != parseInt(cpf.substring(9,10)))
+      {
+          alert("CPF invalido");
+          return false
+      }
+
+  }
   async function addFuncionario()
   {
-    try{
-      setLoading(true);
-      const user = await addDoc(collection(db,"funcionarios"),dataFuncionario);
-      alert("Funcionario Criado com Sucesso");
-    }catch(error){
-      alert("Ouve um Erro ao criar o funcionario",error);
-      setLoading(false);
-    }finally{
-      setLoading(false);
+    const userFound = users.find((user) => user.CPF === CPF);
+    if(userFound)
+    {
+        alert("CPF já utilizado");
+    }else
+    {   
+      try{
+        setLoading(true);
+        await verifyCPF(CPF);
+        const user = await addDoc(collection(db,"funcionarios"),dataFuncionario);
+        alert("Funcionario Criado com Sucesso");
+      }catch(error){
+        alert("Ouve um Erro ao criar o funcionario",error);
+        setLoading(false);
+      }finally{
+        setLoading(false);
+      }
     }
   }
   async function saveFuncionario()
   {
-    if (userID != null || userID != "" || typeof userID != "undefined"){
+    if (funcID != null || funcID != "" || typeof funcID != "undefined"){
       try{
         setLoading(true);
-        const user = await setDoc(doc(db,"funcionarios",userID),dataFuncionario);
+        const user = await setDoc(doc(db,"funcionarios",funcID),dataFuncionario);
         alert("Funcionario Atualizado com Sucesso");
         alert(estabTrab);
         handleReload();
@@ -156,15 +219,16 @@ function CreateFuncionario({userID})
   }
   function handleReload()
   {
-    window.location.reload();
+    handleCloseModal();
   }
 
     
   return(
+<div className='modal-box'> 
 <div class="modal">
   <div class="header">
     <div class="header-buttons">
-      <button class="save-button" onClick={handleSaveUser}>Salvar</button>
+      <button class="save-button" onClick={preencherCampos}>Salvar</button>
       <button class="exit-button"onClick={handleReload}>Sair</button>
     </div>
   </div>
@@ -185,11 +249,12 @@ function CreateFuncionario({userID})
       </div>
       <div className='info-label'>
         <label class="label">Logradouro</label><br/>
-        <input type="text" class="modal-input" placeholder="Endereço" value={Endereco} onChange={(e) => setEndereco(e.target.value)} />
-        <input type="text" class="modal-input" placeholder="Numero" value={eNum} onChange={(e) => seteNum(e.target.value)} />
-        <input type="text" class="modal-input" placeholder="Cidade" value={Cidade} onChange={(e) => setCidade(e.target.value)} />
-        <input type='text' class="modal-input" placeholder='CEP' value={CEP} onChange={(e) => setCEP(e.target.value)}></input>
-        <input type='text' class="modal-input" placeholder='UF' value={UF} onChange={(e) => setUF(e.target.value)}></input>
+        <input type="text" class="modal-input" placeholder="Endereço" value={Endereco} onChange={(e) => setEndereco(e.target.value)} disabled="true" />
+        <input type="text" class="modal-input" placeholder="Numero" value={eNum} onChange={(e) => seteNum(e.target.value)}  disabled="true"/>
+        <input type="text" class="modal-input" placeholder="Cidade" value={Cidade} onChange={(e) => setCidade(e.target.value)} disabled="true" />
+        <input type='text' class="modal-input" placeholder='CEP' value={CEP} onChange={(e) => setCEP(e.target.value)}/>
+        <input type='text' class="modal-input" placeholder='UF' value={UF} onChange={(e) => setUF(e.target.value)} disabled="true"/>
+        <button className="button-pequeno" onClick={handleCepSubmit}>Rastrear</button>
         </div>
         <div>
         <label class="label">Escolaridade</label><br/>
@@ -214,6 +279,7 @@ function CreateFuncionario({userID})
     </div>
   </div>
 </div>
+</div>   
 
   );
 }

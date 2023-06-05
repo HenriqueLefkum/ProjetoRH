@@ -1,10 +1,60 @@
-.content-box
-{
-    background-color: rgb(215, 215, 215);
+html {
+    background-color: #faf9f9;
+  }
+  
+  .container 
+  {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .content-box3
+  {
+    background-color: #ddd;
     border-radius: 10px;
-    width: 90%;
-    min-height: 400px;
+    width: 100%;
+    min-height: 300px;
+    margin-top: 10px;
+    padding: 0px 10px;
+    box-sizing: border-box;
+  }
+
+  .content-box4
+{
+    background-color: #ddd;
+    border-radius: 10px;
+    width: 100%;
+    min-height: 300px;
     margin: 10px auto;
     padding-top:5px;
-    padding: 0px 10px;
+    padding: 0px 10px 0px 10px;
 }
+  
+  @media (min-width: 768px) 
+  {
+    .content-box3
+    {
+      width: 49.9%; 
+    }
+  }
+  
+  .content-box3 h2 
+  {
+    text-align: left;
+  }
+  
+  .content-box3 h1 
+  {
+    text-align: center;
+  }
+
+  .content-box4 h2 
+  {
+    text-align: left;
+  }
+  
+  .content-box4 h1 
+  {
+    text-align: center;
+  }

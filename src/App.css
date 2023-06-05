@@ -14,80 +14,118 @@ button.edit-button img {
 
 button.delete-button {
   color: red;
+
 }
 
 button.edit-button {
   color: blue;
 }
 
-.content-box
-{
-    background-color: rgb(215, 215, 215);
-    border-radius: 10px;
-    width: 90%;
-    min-height: 400px;
-    margin: 10px auto;
-    padding-top:5px;
-    padding: 0px 10px;
+button{
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #27323E;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.button-box
-{
-    width: 80%;
-    margin: 20px auto;
-    padding: 10px;
-    padding-top: 20px;
-    text-align: right;
+button:hover{
+  background-color: #27323E;
+  transform: scale(1.02);
+}
+
+.content-box button:hover{
+  background-color: #334252;
+  transform: scale(1.02);
+}
+
+.content-box {
+  background-color: transparent;
+  border-radius: 10px;
+  width: 100%;
+  min-height: 100px;
+  margin: 10px auto;
+  padding-top: 5px;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.content-box:hover {
+  background-color: #eee;
+  transform: scale(1.02);
+}
+
+.button-box {
+  width: 80%;
+  margin: 20px auto;
+  padding: 10px;
+  padding-top: 20px;
+  text-align: right;
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 80%; /* Define uma largura máxima para a tabela */
-    margin: 0 auto; /* Centraliza a tabela na página */
-    font-family: Arial, sans-serif;
-    font-size: 10px;
-    border: 1px solid #000000; /* Adiciona uma borda para a tabela */
+  width: 100%;
+  max-width: 80%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  transition: all 0.3s ease;
+  border-collapse: separate;
+}
+
+table:hover {
+  transform: scale(1.02);
+
 }
 
 th {
-    background-color: #fff;
-    font-weight: bold;
-    text-align: left;
-    padding: 8px;
-    border: 1px solid #000; /* Adiciona uma borda para o cabeçalho */
+  background-color: #fff;
+  font-weight: bold;
+  text-align: left;
+  padding: 8px;
+  border: 1px solid transparent;
+  border-radius: 0px 15px 0px 0px;
+  border-color: #ccc #ccc #ccc #ccc;
 }
 
 td {
-border-bottom: 1px solid #fff;
-padding: 8px;
-border: 1px solid #000; /* Adiciona uma borda para as células */
-background-color: #fff;
+  border-bottom: 1px solid #fff;
+  padding: 8px;
+  border: 1px solid transparent;
+  background-color: #fff;
+  border-radius: 0px 0px 5px 5px;
+  background-color: #ccc;
 }
 
 td button {
-background-color: #fff;
-border: none;
-cursor: pointer;
-font-size: 14px;
-text-align: left;
-width: 100%;
+  background-color: #aaa;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  
 }
 
 td button:hover {
-background-color: #b3b3b3;
+  background-color: #b3b3b3;
 }
 
 tr:nth-child(even) td {
-background-color: #fff;
+  background-color: #ddd;
 }
 
-.modal-box
-{
-    width: 40%;
+.modal-box {
+  width: 40%;
+  background-color: transparent;
 }
+
 .modal {
-  /* Estilos para o elemento modal */
   background-color: #f2f2f2;
   border: 1px solid #ccc;
   padding: 20px;
@@ -98,69 +136,78 @@ background-color: #fff;
   transform: translate(-50%, -50%);
   min-width: 800px;
   min-height: 400px;
+  transition: all 0.3s ease;
+  opacity: 1;
 }
 
 .header {
-  /* Estilos para o cabeçalho */
   margin-bottom: 20px;
+  transition: margin-bottom 0.3s ease;
 }
 
 .header-buttons {
-  /* Estilos para os botões do cabeçalho */
   display: flex;
   justify-content: flex-end;
   margin-bottom: 10px;
 }
 
 .modal-input {
-  /* Estilos para as entradas do modal */
-  margin-bottom: 10px;
+  margin: 5px;
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid transparent;
   border-radius: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 2px  #ccc;
 }
 
 .modal-input2 {
-  /* Estilos para as entradas do modal */
   margin-bottom: 10px;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 50px;
+  transition: all 0.3s ease;
+  box-shadow: #ccc;
 }
 
 .label {
-  /* Estilos para rótulos */
   font-weight: bold;
   margin-bottom: 5px;
 }
 
 .info-label {
-  /* Estilos para as divisões com título */
   margin-bottom: 20px;
 }
 
 .save-button,
 .exit-button {
-  /* Estilos para botões */
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
   outline: none;
   border: none;
+  transition: all 0.3s ease;
 }
 
 .save-button {
-  /* Estilos específicos para o botão "Salvar" */
-  background-color: #4caf50;
+  background-color: #0099ff;
   color: #fff;
+  margin: 10px;
+}
+
+.save-button:hover {
+  background-color: #0066ff;
 }
 
 .exit-button {
-  /* Estilos específicos para o botão "Sair" */
-  background-color: #f44336;
-  color: #fff;
+  background-color: #bbb;
+  color: #000;
+  margin: 10px;
+}
+
+.exit-button:hover {
+  background-color: #999;
 }
 
 .tela {
@@ -181,4 +228,86 @@ background-color: #fff;
 
 .botao-selecionado {
   background-color: #ccc;
+}
+
+.centralize {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Regras de estilo para tornar a tabela responsiva */
+@media screen and (max-width: 600px) {
+  table {
+    font-size: 8px;
+  }
+
+  th,
+  td {
+    padding: 4px;
+  }
+}
+
+.modal-cru {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 510px;
+  min-height: 200px;
+  transition: all 0.3s ease;
+  opacity: 1;
+  text-align: left;
+}
+
+.modal-cru input{
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.modal-senha {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 510px;
+  min-height: 200px;
+  transition: all 0.3s ease;
+  opacity: 1;
+  text-align: center;
+}
+
+.modal-senha input{
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.button-pequeno{
+  width: 100px;
+  height: 30px;
+  color: #fff;
+
+}
+.modal-input:disabled{
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  background-color: #fff;
 }

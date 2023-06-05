@@ -5,7 +5,7 @@ function Header()
     return(
      <div className='headerArea'>
         
-        <Link to="/">Header</Link>
+        <Link to="/home">Beyond Gods</Link>
         
      </div>
     );
